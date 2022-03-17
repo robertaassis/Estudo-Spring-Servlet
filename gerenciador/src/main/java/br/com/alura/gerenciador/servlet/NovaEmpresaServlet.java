@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class NovaEmpresaServlet
  */
-@WebServlet("/novaEmpresa")
+@WebServlet("/novaEmpresa") // caminho mapeado
 public class NovaEmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -28,6 +28,15 @@ public class NovaEmpresaServlet extends HttpServlet {
 		// METODO GETPARAMETER SEMPRE RETORNA STRING!!!
 		// Se o forms estiver como metodo POST, o getParameter consegue pegar o valor do input sem mostra-lo na URL
 		String nomeEmpresa = request.getParameter("nome"); // guarda o parametro nome (Alura) da URL em nomeEmpresa; http://localhost:8080/gerenciador/novaEmpresa?nome=Alura
+		Empresa empresa = new Empresa();
+		empresa.setNome(nomeEmpresa);
+		
+		// Simulando banco
+		
+		Banco banco = new Banco();
+		banco.adiciona(empresa); // adiciona empresa no banco
+		
+		
 		out.println("<html><body>Empresa "+ nomeEmpresa +" cadastrada com sucesso</body></html>");
 		
 		
