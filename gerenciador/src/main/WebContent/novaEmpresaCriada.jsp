@@ -1,14 +1,18 @@
 <!-- java server page - JSP -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %> <!-- core é controle de fluxo -->
 
-<%
-
-	String nomeEmpresa = (String) request.getAttribute("empresa"); // pegando o atributo que foi jogado
-	
-%>
+<!-- uso ${ empresa } apenas para usar entre eles o atributo salvo. Ex: empresa guardou o empresa.getNome no servlet NovaEmpresaServlet, logo posso usa-lo assim.
+Expression Language nao funciona com loops  -->
 
 <html>
-<body>
-	Empresa <%= nomeEmpresa %> cadastrada com sucesso!
-</body>
+	<body>
+	<c:if test="${not empty empresa}">
+		Empresa ${ empresa } cadastrada com sucesso!
+	</c:if>
+	
+	<c:if test="${empty empresa}">
+		Empresa não foi cadastrada
+	</c:if>
+	</body>
 </html>
 

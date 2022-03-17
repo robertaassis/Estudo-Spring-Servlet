@@ -2,6 +2,9 @@ package br.com.alura.gerenciador.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,8 +31,20 @@ public class NovaEmpresaServlet extends HttpServlet {
 		// METODO GETPARAMETER SEMPRE RETORNA STRING!!!
 		// Se o forms estiver como metodo POST, o getParameter consegue pegar o valor do input sem mostra-lo na URL
 		String nomeEmpresa = request.getParameter("nome"); // guarda o parametro nome (Alura) da URL em nomeEmpresa; http://localhost:8080/gerenciador/novaEmpresa?nome=Alura
+		String dataEmpresa = request.getParameter("data"); // retorna como string
+		
+		Date dataAbertura = null; // instanciei aqui pra ser global, pois como tava dentro de try catch eu nao tava conseguindo recupera-lo
+		
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); 
+			dataAbertura = sdf.parse(dataEmpresa); // passa o valor dataEmpresa, que veio como string do getParameter, e o transforma na forma dd/MM/yyyy
+		} catch (ParseException e) {
+			throw new ServletException(e);
+		} 
+		
 		Empresa empresa = new Empresa();
 		empresa.setNome(nomeEmpresa);
+		empresa.setDataAbertura(dataAbertura);
 		
 		// Simulando banco
 		
