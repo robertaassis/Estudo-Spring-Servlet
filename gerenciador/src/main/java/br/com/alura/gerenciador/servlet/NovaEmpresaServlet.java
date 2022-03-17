@@ -3,6 +3,7 @@ package br.com.alura.gerenciador.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +25,6 @@ public class NovaEmpresaServlet extends HttpServlet {
 	// service lida com get e com post
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
 		System.out.println("Cadastrando nova empresa");
-		PrintWriter out = response.getWriter(); // vai escrever na página
 		// METODO GETPARAMETER SEMPRE RETORNA STRING!!!
 		// Se o forms estiver como metodo POST, o getParameter consegue pegar o valor do input sem mostra-lo na URL
 		String nomeEmpresa = request.getParameter("nome"); // guarda o parametro nome (Alura) da URL em nomeEmpresa; http://localhost:8080/gerenciador/novaEmpresa?nome=Alura
@@ -36,8 +36,14 @@ public class NovaEmpresaServlet extends HttpServlet {
 		Banco banco = new Banco();
 		banco.adiciona(empresa); // adiciona empresa no banco
 		
+		// chama JSP
 		
-		out.println("<html><body>Empresa "+ nomeEmpresa +" cadastrada com sucesso</body></html>");
+		RequestDispatcher rd = request.getRequestDispatcher("/novaEmpresaCriada.jsp"); // conecta no jsp
+		request.setAttribute("empresa", empresa.getNome()); // joga atributo dentro da requisição; fica dentro do atributo "empresa" o nome
+		rd.forward(request,  response); // envia para o jsp
+		
+		
+	
 		
 		
 	}
