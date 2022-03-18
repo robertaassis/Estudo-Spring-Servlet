@@ -1,35 +1,26 @@
 package br.com.alura.gerenciador.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class NovaEmpresaServlet
- */
-@WebServlet("/novaEmpresa") // caminho mapeado
-public class NovaEmpresaServlet extends HttpServlet {
+@WebServlet("/alteraEmpresa")
+public class AlteraEmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
-	
-	// se eu mudar de protected void service pra protected void doPost ele só vai aceitar requisição POST, não GET.
-	// service lida com get e com post
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
-		System.out.println("Cadastrando nova empresa");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String nomeEmpresa = request.getParameter("nome");
 		String dataEmpresa = request.getParameter("data"); 
+		String paramId =  request.getParameter("id");
+		Integer id = Integer.valueOf(paramId);
 		
 		Date dataAbertura = null; // instanciei aqui pra ser global, pois como tava dentro de try catch eu nao tava conseguindo recupera-lo
 		
@@ -40,17 +31,13 @@ public class NovaEmpresaServlet extends HttpServlet {
 			throw new ServletException(e);
 		} 
 		
-		Empresa empresa = new Empresa();
+		Banco banco = new Banco();
+		Empresa empresa = banco.buscaEmpresaPorId(id); // acha a empresa
+		// troca os dados dela
 		empresa.setNome(nomeEmpresa);
 		empresa.setDataAbertura(dataAbertura);
 		
-		
-		Banco banco = new Banco();
-		banco.adiciona(empresa); // adiciona empresa no banco; seta o id autoincremento
-		
-		
-		response.sendRedirect("listaEmpresas"); // redireciona a resposta para o servlet listaEmpresas
-		
+		response.sendRedirect("listaEmpresas");
 		
 	}
 
