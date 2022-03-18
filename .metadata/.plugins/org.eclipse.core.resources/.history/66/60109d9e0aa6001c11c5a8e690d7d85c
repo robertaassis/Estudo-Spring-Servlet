@@ -1,0 +1,13 @@
+<!-- java server page - JSP -->
+
+<%
+	String nomeEmpresa="TOTVS";
+	
+%>
+
+<html>
+<body>
+	Empresa <% out.println(nomeEmpresa); %> cadastrada com sucesso!
+</body>
+</html>
+

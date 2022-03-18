@@ -1,0 +1,24 @@
+package br.com.alura.gerenciador.servlet;
+
+import java.util.ArrayList;
+import java.util.List;
+
+// Modelos
+public class Banco {
+	
+	private static List<Empresa> lista = new ArrayList<Empresa>(); // lista de empresas
+	
+	static {
+		Empresa empresa = new Empresa();
+		empresa.setNome("Alura);
+	}
+	
+	public void adiciona(Empresa empresa) { // adiciona na lista essa empresa
+		Banco.lista.add(empresa);
+	}
+	
+	public List<Empresa> getEmpresas(){ // devolve a lista
+		return Banco.lista; // nao pode usar this pq é private static, tem que usar Banco que é o objeto
+	}
+
+}

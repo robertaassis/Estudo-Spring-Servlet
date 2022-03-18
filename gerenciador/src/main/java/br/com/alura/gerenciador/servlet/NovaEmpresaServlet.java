@@ -46,16 +46,25 @@ public class NovaEmpresaServlet extends HttpServlet {
 		empresa.setNome(nomeEmpresa);
 		empresa.setDataAbertura(dataAbertura);
 		
-		// Simulando banco
 		
 		Banco banco = new Banco();
 		banco.adiciona(empresa); // adiciona empresa no banco
 		
-		// chama JSP
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/novaEmpresaCriada.jsp"); // conecta no jsp
-		request.setAttribute("empresa", empresa.getNome()); // joga atributo dentro da requisição; fica dentro do atributo "empresa" o nome
-		rd.forward(request,  response); // envia para o jsp
+		response.sendRedirect("listaEmpresas"); // redireciona a resposta para o servlet listaEmpresas
+		
+		/* sendRedirect = redirecionamento do lado do navegador; redirecionamento ao lado do cliente
+		RequestDispatcher = redirecionamento do lado do servidor (um servlet chamando outro) */
+		
+		/* é redirecionado para outro servlet para ser feita uma nova requisição. No código abaixo se a pessoa escreve algo e vai para a lista de empresas, se ela apertar
+		f5 o nome da lista iria repetir, pois as requisições estavam sendo feitas aqui. Ao redirecionar para outro arquivo com redirect, ele fará uma nova requisição de leitura, então
+		ao apertar f5, o usuario abre mão daquela info e nao fica repetindo */
+
+		
+//		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas"); // chama servlet listaEmpresas
+//		//consigo usar o atributo empresa no recurso acima
+//		request.setAttribute("empresa", empresa.getNome()); // joga atributo dentro da requisição; fica dentro do atributo "empresa" o nome
+//		rd.forward(request,  response); // envia para o jsp
 		
 		
 	

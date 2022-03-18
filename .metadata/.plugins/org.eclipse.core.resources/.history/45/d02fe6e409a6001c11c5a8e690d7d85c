@@ -1,0 +1,13 @@
+<html>
+<body>
+	<ul>
+	
+		for(Empresa empresa : lista) { //foreach; printa as empresas
+			out.println("<li>"+ empresa.getNome() + "</li>");
+		}
+		
+	</ul>
+</body>
+</html>
+
+<!-- java server page - JSP -->

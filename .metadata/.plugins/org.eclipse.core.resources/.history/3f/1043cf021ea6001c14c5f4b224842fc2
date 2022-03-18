@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"
+    
+    %>
+<%@  page import="java.util.List, br.com.alura.gerenciador.servlet.Empresa"  %>
+
+
+<!-- BAIXEI BIBLIOTECA JSTL EM src/main/WebContent/WEB-INF/lib  -->
+<html>
+	<body>
+	Lista de empresas: <br/> 
+		<ul>
+		
+		<% List<Empresa> lista = (List<Empresa>)request.getAttribute("listaEmpresa"); // casting; coloca na lista o atributo guardado em listaEmpresa
+		for(Empresa empresa : lista) { %>
+			<li> <%= empresa.getNome() %>  </li> 
+		<% } %>
+		
+		</ul>
+	</body>
+</html>

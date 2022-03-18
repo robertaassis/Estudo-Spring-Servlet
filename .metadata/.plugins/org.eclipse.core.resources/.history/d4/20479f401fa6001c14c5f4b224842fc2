@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"
+    
+    %>
+<%@ page import="java.util.List, br.com.alura.gerenciador.servlet.Empresa"  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %> <!-- biblioteca jstl -->
+
+<!-- BAIXEI BIBLIOTECA JSTL EM src/main/WebContent/WEB-INF/lib  -->
+<html>
+	<body>
+	Lista de empresas: <br/> 
+	
+	
+	<ul>
+		<c:forEach items="${listaEmpresa}" var="empresa">
+			<li> ${empresa.nome} </li> <!-- chama getNome sozinho -->
+		</c:forEach>
+	</ul>
+	
+	<!-- Mesma coisa do código abaixo-->
+	
+	<!--	<ul>
+		
+		<%// List<Empresa> lista = (List<Empresa>)request.getAttribute("listaEmpresa"); // casting; coloca na lista o atributo guardado em listaEmpresa
+		//for(Empresa empresa : lista) { %>
+			<li> <%= //empresa.getNome() %>  </li> 
+		<% //} %>
+		
+		</ul>
+	</body>
+</html> -->

@@ -1,0 +1,13 @@
+<!-- java server page - JSP -->
+
+<%
+	String nomeEmpresa="Alura";
+	
+%>
+
+<html>
+<body>
+	Empresa <% out.nomeEmpresa %> cadastrada com sucesso!
+</body>
+</html>
+

@@ -1,0 +1,14 @@
+<!-- java server page - JSP -->
+
+<%
+
+	String nomeEmpresa = (String) request.getAttribute("empresa"); // pegando o atributo que foi jogado
+	
+%>
+
+<html>
+	<body>
+		Empresa ${ empresa } cadastrada com sucesso!
+	</body>
+</html>
+

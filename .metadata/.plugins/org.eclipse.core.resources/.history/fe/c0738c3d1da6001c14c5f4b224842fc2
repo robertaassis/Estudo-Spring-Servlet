@@ -1,0 +1,11 @@
+<!-- java server page - JSP -->
+
+
+<!-- uso ${ empresa } apenas para usar entre eles o atributo salvo. Ex: empresa guardou o empresa.getNome no servlet NovaEmpresaServlet, logo posso usa-lo assim.
+Expression Language nao funciona com loops  -->
+<html>
+	<body>
+		Empresa ${ empresa } cadastrada com sucesso!
+	</body>
+</html>
+

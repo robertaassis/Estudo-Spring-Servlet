@@ -22,13 +22,14 @@ public class ListaEmpresasServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+	protected void service(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
 		Banco banco = new Banco();
 		List<Empresa> lista = banco.getEmpresas();
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas.jsp"); // conecta no jsp
-		request.setAttribute("listaEmpresa", lista); // joga atributo dentro da requisição; fica dentro do atributo "empresa" o nome
+		request.setAttribute("listaEmpresa", lista); // joga atributo dentro da requisição; fica dentro do atributo "listaEmpresa" a lista das empresas
 		rd.forward(request,  response); // envia para o jsp
 		
 		
